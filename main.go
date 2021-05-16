@@ -133,7 +133,7 @@ ______         _   _   ___
 	// default to 302
 
 	fmt.Println(Config.asciiart)
-	fmt.Printf("Mode: %s \nURL: %s\n",Config.mode, Config.redirectUrl)
+	fmt.Printf("Mode: %s \nURL: %s\nPort: %s\n\n",Config.mode, Config.redirectUrl, Config.httpPort)
 
 	switch Config.mode {
 	case "single":
@@ -142,6 +142,7 @@ ______         _   _   ___
 		RedirectPortScan(Config.redirectUrl)
 	}
 
+	fmt.Printf("Starting server on localhost%s\n",Config.httpPort)
 	http.ListenAndServe(Config.httpPort, nil)
 
 }

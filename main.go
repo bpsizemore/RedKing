@@ -2,6 +2,7 @@ package main
 
 import(
     "net/http"
+	"net/url"
 	"fmt"
 	"strconv"
 	"flag"
@@ -25,8 +26,13 @@ var Config struct {
 }
 
 func ValidateUrl(urlPtr *string) error {
-	if (*urlPtr == "") {
-		return errors.New("No URL supplied.")
+
+	u, err := url.Parse(*urlPtr)
+	if err != nil {
+		return err;
+	}
+	if u.Scheme == "" || u.Host == "" {
+		return errors.New("URL is invalid. Please supply a URL in the format: https://test.com/some/path")
 	}
 	return nil
 }
@@ -41,7 +47,11 @@ func ValidateMode(modePtr *string) error {
 }
 
 func ExtractHostFromUrl(urlPtr *string) string {
-	return *urlPtr
+	u, err := url.Parse(*urlPtr)
+	if err != nil {
+		panic(err)
+	}
+	return u.Host
 }
 
 func handleRedirect(w http.ResponseWriter, r *http.Request) {
@@ -128,9 +138,6 @@ ______         _   _   ___
 		log.Fatal(mode_err)
 	}
 	Config.mode = *modePtr
-
-	// 3 redirection types, 301, 302, and 307
-	// default to 302
 
 	fmt.Println(Config.asciiart)
 	fmt.Printf("Mode: %s \nURL: %s\nPort: %s\n\n",Config.mode, Config.redirectUrl, Config.httpPort)

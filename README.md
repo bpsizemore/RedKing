@@ -1,8 +1,8 @@
 # RedKing
 RedKing is a simple tool for redirecting web requests.
-It was created to help identify and exploit SSRF vulnerabilities similar to these:
-[CVE-2021-21311](https://github.com/advisories/GHSA-x5r2-hj5c-8jx6)
-[CVE-2021-21311 Writeup](https://github.com/vrana/adminer/files/5957311/Adminer.SSRF.pdf)
+It was created to help identify and exploit SSRF vulnerabilities similar to these: \
+[CVE-2021-21311](https://github.com/advisories/GHSA-x5r2-hj5c-8jx6) \
+[CVE-2021-21311 Writeup](https://github.com/vrana/adminer/files/5957311/Adminer.SSRF.pdf) \
 [Gitlab SSRF redirect vulnerability](https://gitlab.com/gitlab-org/gitlab-foss/-/issues/54649)
 
 ## How to Use it
@@ -40,11 +40,11 @@ Single mode simply allows you to redirect all traffic to one specific host and p
 
 ### Portscan Mode
 Portscan mode is designed to allow you to "scan" an internal IP for open ports.
-By default it will create a redirect to allow you to test the following ports: 22, 80, 443, 445, 3389, 8000, 8080
+By default it will create a redirect to allow you to test the following ports: 22, 80, 443, 445, 3389, 8000, 8080 \
 It will create a series of redirects on your localhost, each of which corresponds to a specific port on the target server.
-e.g.
-localhost:8080/0 -> Redirect To -> http://test.com:22
-localhost:8080/1 -> Redirect To -> http://test.com:80
+e.g. \
+localhost:8080/0 -> Redirect To -> http://test.com:22 \
+localhost:8080/1 -> Redirect To -> http://test.com:80 \
 localhost:8080/2 -> Redirect To -> http://test.com:443
 
 Depending on the specifics of the SSRF vulnerability you are exploiting, you may be able to glean information about running processes, or even access 
@@ -116,7 +116,7 @@ Connecting to localhost:8080/6
 curl: (28) Connection timed out after 1000 milliseconds
 ```
 
-Notice that for endpoints 0,3,4,5,and 6 that the connection timed out. This indicates that there is likely _not_ a service running on those ports.
+Notice that for endpoints 0,3,4,5,and 6 the connection timed out. This indicates that there is likely _not_ a service running on those ports.
 
-**Note:** This mode is really designed to be used in conjunction with a tool like Burp's Intruder utility or some other tool that will allow you to quickly
+**Note:** This mode is really designed to be used in conjunction with a tool like Burp's Intruder utility or something that will allow you to quickly
 trigger requests and then grep through the output.

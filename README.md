@@ -142,8 +142,8 @@ Notice that for endpoints 0,3,4,5,and 6 the connection timed out. This indicates
 ## Docker
 Running from docker is easy, simply run the image and specify command line arguments.
 ```
-git pull bpsizemore/redking
-git run bpsizemore/redking -h
-git run bpsizemore/redking -url test.com -mode simple 
+docker pull bpsizemore/redking
+docker run bpsizemore/redking -h
+docker run bpsizemore/redking -url test.com -mode simple 
 ```
 **https://hub.docker.com/r/bpsizemore/redking**

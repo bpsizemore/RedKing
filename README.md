@@ -6,11 +6,28 @@ It was created to help identify and exploit SSRF vulnerabilities similar to thes
  * [Gitlab SSRF redirect vulnerability](https://gitlab.com/gitlab-org/gitlab-foss/-/issues/54649)
 
 ## How to Use it
-Currently RedKing can be ran in two different modes: single and portscan.
+Run RedKing with the `-h` flag to see available options and formats.
 
-### Quickstart
-The simplest way to run RedKing is to supply a URL and go.
+```
+./RedKing -h
+Usage of ./RedKing:
+  -mode string
+    	The mode RedKing should execute in. Select from:
+    	single - redirect to a single URL
+    	portscan - create a series of redirects at localhost/1,localhost/2,...
+    		Each number will redirect to a different port on the target host.
+    	The built in port scan ports are: 22,80,443,445,3389,8000,8080
+    	 (default "single")
+  -p int
+    	The port used to host the redirect server (default 8080)
+  -r int
+    	Redirect status code - suggested 301, 302, or 307 (default 302)
+  -url string
+    	The URL used for redirects
+  -v	Verbose
+```
 
+## Quickstart
 ```
 ./RedKing -url http://test.com
 
@@ -39,6 +56,10 @@ By default, RedKing opens a server on localhost:8080 and redirects all requests 
 Single mode simply allows you to redirect all traffic to one specific host and path. See the example above for simple usage.
 
 ### Portscan Mode
+
+**Note:** This mode is really designed to be used in conjunction with a tool like Burp's Intruder utility or something that will allow you to quickly
+trigger requests and then grep through the output.
+
 Portscan mode is designed to allow you to "scan" an internal IP for open ports.
 By default it will create a redirect to allow you to test the following ports: 22, 80, 443, 445, 3389, 8000, 8080 \
 It will create a series of redirects on your localhost, each of which corresponds to a specific port on the target server.
@@ -118,5 +139,11 @@ curl: (28) Connection timed out after 1000 milliseconds
 
 Notice that for endpoints 0,3,4,5,and 6 the connection timed out. This indicates that there is likely _not_ a service running on those ports.
 
-**Note:** This mode is really designed to be used in conjunction with a tool like Burp's Intruder utility or something that will allow you to quickly
-trigger requests and then grep through the output.
+## Docker
+Running from docker is easy, simply run the image and specify command line arguments.
+```
+git pull bpsizemore/redking
+git run bpsizemore/redking -h
+git run bpsizemore/redking -url test.com -mode simple 
+```
+**https://hub.docker.com/r/bpsizemore/redking**

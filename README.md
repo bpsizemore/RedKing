@@ -1,9 +1,9 @@
 # RedKing
 RedKing is a simple tool for redirecting web requests.
-It was created to help identify and exploit SSRF vulnerabilities similar to these: \
-[CVE-2021-21311](https://github.com/advisories/GHSA-x5r2-hj5c-8jx6) \
-[CVE-2021-21311 Writeup](https://github.com/vrana/adminer/files/5957311/Adminer.SSRF.pdf) \
-[Gitlab SSRF redirect vulnerability](https://gitlab.com/gitlab-org/gitlab-foss/-/issues/54649)
+It was created to help identify and exploit SSRF vulnerabilities similar to these:
+ * [CVE-2021-21311](https://github.com/advisories/GHSA-x5r2-hj5c-8jx6)
+ * [CVE-2021-21311 Writeup](https://github.com/vrana/adminer/files/5957311/Adminer.SSRF.pdf)
+ * [Gitlab SSRF redirect vulnerability](https://gitlab.com/gitlab-org/gitlab-foss/-/issues/54649)
 
 ## How to Use it
 Currently RedKing can be ran in two different modes: single and portscan.

@@ -140,7 +140,7 @@ curl: (28) Connection timed out after 1000 milliseconds
 Notice that for endpoints 0,3,4,5,and 6 the connection timed out. This indicates that there is likely _not_ a service running on those ports.
 
 ## Docker
-Running from docker is easy, simply run the image and specify command line arguments.
+To run in docker, run the image and specify command line arguments.
 ```
 docker pull bpsizemore/redking
 docker run bpsizemore/redking -h
